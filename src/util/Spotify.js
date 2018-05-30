@@ -1,5 +1,5 @@
 const clientId = ' 0851acd12944496398752b7378093876';
-const redirectURI = "http://localhost:3000/";
+const redirectURI = "https://playlist.surge.sh";
 const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 let accessToken;
 let expiresIn;
@@ -46,6 +46,38 @@ const Spotify = {
       }));
     });
   },
+
+
+  savePlaylist(name, trackUris) {
+      if (!name || !trackUris.length) {
+        return;
+      }
+
+      const accessToken = Spotify.getAccessToken();
+      const headers = { Authorization: `Bearer ${accessToken}` };
+      let userId;
+
+      return fetch('https://api.spotify.com/v1/me', {headers: headers}
+      ).then(response => response.json()
+      ).then(jsonResponse => {
+        userId = jsonResponse.id;
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+          headers: headers,
+          method: 'POST',
+          body: JSON.stringify({name: name})
+        }).then(response => response.json()
+        ).then(jsonResponse => {
+          const playlistId = jsonResponse.id;
+          return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify({uris: trackUris})
+          });
+        });
+      });
+    }
+
+}
 
 
 
