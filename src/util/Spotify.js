@@ -1,6 +1,6 @@
 const clientId = ' 0851acd12944496398752b7378093876';
 const redirectURI = "https://playlist.surge.sh";
-const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
 let accessToken;
 let expiresIn;
 
@@ -76,10 +76,6 @@ const Spotify = {
         });
       });
     }
-
-}
-
-
 
 };
 
