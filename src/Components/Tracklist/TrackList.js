@@ -1,7 +1,7 @@
 import React from 'react';
 import './TrackList.css';
 
-import TrackList from '../Track/Track';
+import Track from '../Track/Track';
 
 class TrackList extends React.Component {
   render() {
@@ -11,16 +11,15 @@ class TrackList extends React.Component {
         this.props.tracks.map(track => {
           return (
             <div>
-              <Track track = {track} key={track.id} onAdd = {this.props.onAdd} onRemove = {this.props.onRemove} isRemoval = {this.props.isRemoval}/>
-
-              <p>{this.props.track.name}</p>
-              <p>{this.props.track.artist}</p>
-              <p>{this.props.track.album}</p>
+              <Track track = {track}
+              key={track.id}
+              onAdd = {this.props.onAdd}
+              onRemove = {this.props.onRemove}
+              isRemoval = {this.props.isRemoval} />
             </div>
           )
         })
       }
-
       </div>
     );
   }
