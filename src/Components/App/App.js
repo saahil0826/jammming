@@ -4,6 +4,8 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import Track from '../Track/Track';
+import TrackList from '../TrackList/TrackList';
 import Spotify  from '../../util/Spotify';
 
 
